@@ -5,6 +5,6 @@ namespace MarsRover.Infrastructure.Mediator.Interfaces
 {
     public interface IPublisher
     {
-        Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default) where TNotification : INotification;
+        void Publish<TNotification>(TNotification notification) where TNotification : INotification;
     }
 }

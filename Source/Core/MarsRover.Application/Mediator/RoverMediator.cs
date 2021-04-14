@@ -19,7 +19,7 @@ namespace MarsRover.Infrastructure.Mediator
             Plateau = plateau;
         }
 
-        public Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default) where TNotification : INotification
+        public void Publish<TNotification>(TNotification notification) where TNotification : INotification
         {
             throw new NotImplementedException();
         }
