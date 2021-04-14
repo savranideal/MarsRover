@@ -1,9 +1,7 @@
 ﻿using MarsRover.Infrastructure.Command;
-using MarsRover.Infrastructure.Geography;
 using MarsRover.Infrastructure.Mediator.Interfaces;
 using MarsRover.Infrastructure.Vehicle;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +9,7 @@ using MarsRover.Infrastructure.Geography.Interfaces;
 
 namespace MarsRover.Infrastructure.Mediator
 {
-    public class RoverMediator : IMediator<IRover>
+    public class RoverMediator : IMediator
     {
         public IPlateau Plateau { get; set; }
 
@@ -25,9 +23,7 @@ namespace MarsRover.Infrastructure.Mediator
         {
             throw new NotImplementedException();
         }
-
-
-        public void Send(IRover rover, IEnumerable<ICommand> commands)
+        public void Send<TVehicle>(TVehicle rover, IEnumerable<ICommand> commands) where TVehicle : IRover
         {
             lock (_roverLock)
             {

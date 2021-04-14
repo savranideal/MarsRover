@@ -27,16 +27,16 @@ namespace MarsRover.Infrastructure.UnitTests
         [InlineData('Y')]
         public void ConvertLetterToMoveType_Should_ThrowException(char inputCommand)
         {
-            Func<MoveType> convertFunction= ()=>CommandParser.ConvertLetterToMoveType(inputCommand);
+            Func<MoveType> convertFunction = () => CommandParser.ConvertLetterToMoveType(inputCommand);
             convertFunction.Should().Throw<Exception>();
         }
 
         [Theory]
-        [InlineData(MoveType.Left,typeof(TurnLeftCommand))]
+        [InlineData(MoveType.Left, typeof(TurnLeftCommand))]
         [InlineData(MoveType.Right, typeof(TurnRightCommand))]
         [InlineData(MoveType.Move, typeof(MoveCommand))]
-        public void CreateRoverCommand_Should_CreateCommand(MoveType moveType,Type expected)
-        { 
+        public void CreateRoverCommand_Should_CreateCommand(MoveType moveType, Type expected)
+        {
             Mock<IRover> rover = new Mock<IRover>();
 
             ICommand output = CommandParser.CreateRoverCommand(rover.Object, moveType);
@@ -50,10 +50,10 @@ namespace MarsRover.Infrastructure.UnitTests
         public void CreateRoverCommandsFromText_Should_Convert(string commandInput)
         {
             Mock<IRover> rover = new Mock<IRover>();
-            IEnumerable<ICommand> commands= CommandParser.CreateRoverCommandsFromText(commandInput, rover.Object);
+            IEnumerable<ICommand> commands = CommandParser.CreateRoverCommandsFromText(commandInput, rover.Object);
             commands.Should().NotBeNull();
             commands.Should().HaveCount(commandInput.Length);
-            commands.Where(c=>c is TurnLeftCommand).Should().ContainItemsAssignableTo<TurnLeftCommand>().And
+            commands.Where(c => c is TurnLeftCommand).Should().ContainItemsAssignableTo<TurnLeftCommand>().And
                 .HaveCount(commandInput.Count(c => c == 'L'));
             commands.Where(c => c is MoveCommand).Should().ContainItemsAssignableTo<MoveCommand>().And
                 .HaveCount(commandInput.Count(c => c == 'M'));

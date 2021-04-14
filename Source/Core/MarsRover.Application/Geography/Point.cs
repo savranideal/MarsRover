@@ -5,6 +5,7 @@ namespace MarsRover.Infrastructure.Geography
 {
     public struct Point : IEquatable<Point>
     {
+
         public Point(int x, int y)
         {
             X = x;
@@ -19,6 +20,15 @@ namespace MarsRover.Infrastructure.Geography
         {
             return X == other.X && Y == other.Y;
         }
+        public override bool Equals(object obj)
+        {
+            return obj is Point other && Equals(other);
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
+
         public static bool operator ==(Point first, Point second)
         {
             return Equals(first, second);

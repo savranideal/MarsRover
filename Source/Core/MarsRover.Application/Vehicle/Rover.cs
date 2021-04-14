@@ -47,7 +47,7 @@ namespace MarsRover.Infrastructure.Vehicle
             {
                 Point = currentPoint;
             }
-            
+
             return Point;
         }
 

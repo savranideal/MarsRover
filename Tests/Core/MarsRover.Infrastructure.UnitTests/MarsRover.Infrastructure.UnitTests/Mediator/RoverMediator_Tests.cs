@@ -23,9 +23,9 @@ namespace MarsRover.Infrastructure.UnitTests.Mediator
             Mock<ICommand> commandMock = new Mock<ICommand>();
             plateauMock.Setup(c => c.IsRoverOn(roverMock.Object)).Returns(true).Verifiable();
             commandMock.Setup(c => c.Run()).Verifiable();
-            IMediator<IRover> mediator = new RoverMediator(plateauMock.Object);
+            IMediator mediator = new RoverMediator(plateauMock.Object);
 
-            mediator.Send(roverMock.Object, new List<ICommand>{commandMock.Object});
+            mediator.Send(roverMock.Object, new List<ICommand> { commandMock.Object });
 
             plateauMock.Verify(c => c.IsRoverOn(roverMock.Object));
             commandMock.Verify(c => c.Run());
@@ -37,11 +37,11 @@ namespace MarsRover.Infrastructure.UnitTests.Mediator
             Mock<IPlateau> plateauMock = new Mock<IPlateau>();
             Mock<IRover> roverMock = new Mock<IRover>();
             Mock<ICommand> commandMock = new Mock<ICommand>();
-            plateauMock.Setup(c => c.IsRoverOn(roverMock.Object)).Returns(false).Verifiable(); 
+            plateauMock.Setup(c => c.IsRoverOn(roverMock.Object)).Returns(false).Verifiable();
 
-            IMediator<IRover> mediator = new RoverMediator(plateauMock.Object); 
-            Action sendAction = () => mediator.Send(roverMock.Object, new List<ICommand> { commandMock.Object }); 
-            
+            IMediator mediator = new RoverMediator(plateauMock.Object);
+            Action sendAction = () => mediator.Send(roverMock.Object, new List<ICommand> { commandMock.Object });
+
             sendAction.Should().Throw<Exception>();
             plateauMock.Verify(c => c.IsRoverOn(roverMock.Object));
         }

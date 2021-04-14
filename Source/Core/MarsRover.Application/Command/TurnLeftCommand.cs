@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("MarsRover.Infrastructure.UnitTests")]
 namespace MarsRover.Infrastructure.Command
 {
-    internal sealed class TurnLeftCommand : ICommand 
+    internal sealed class TurnLeftCommand : ICommand
     {
         private readonly Rotate _rotate;
         private readonly ITurnable _rover;
 
-        public TurnLeftCommand(ITurnable rover,Rotate rotate) 
+        public TurnLeftCommand(ITurnable rover, Rotate rotate)
         {
             _rotate = rotate;
             _rover = rover;

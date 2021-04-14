@@ -4,8 +4,6 @@ using MarsRover.Infrastructure.Geography;
 using MarsRover.Infrastructure.Mediator;
 using MarsRover.Infrastructure.Mediator.Interfaces;
 using MarsRover.Infrastructure.Vehicle;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MarsRover.Infrastructure.Geography.Interfaces;
@@ -14,10 +12,10 @@ namespace MarsRover.Console
 {
     public class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             IPlateau plateu = new Plateau("plateau", new Point(), new Point(5, 5));
-            IMediator<IRover> mediator = new RoverMediator(plateu);
+            ISender mediator = new RoverMediator(plateu);
 
             IRover rover1 = new Rover(plateu, new Point(1, 2), "rover1", Direction.North);
             IRover rover2 = new Rover(plateu, new Point(3, 3), "rover2", Direction.East);

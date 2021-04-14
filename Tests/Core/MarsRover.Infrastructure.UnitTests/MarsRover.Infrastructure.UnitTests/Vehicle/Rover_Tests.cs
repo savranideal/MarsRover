@@ -37,20 +37,20 @@ namespace MarsRover.Infrastructure.UnitTests.Vehicle
         }
 
         [Theory]
-        [InlineData(Rotate.Half,Direction.North, Direction.West)]
-        [InlineData(Rotate.Half,Direction.East, Direction.North)]
-        [InlineData(Rotate.Half,Direction.South, Direction.East)]
-        [InlineData(Rotate.Half,Direction.West, Direction.South)]
-        [InlineData(Rotate.Full,Direction.North, Direction.South)]
-        [InlineData(Rotate.Full,Direction.East, Direction.West)]
-        [InlineData(Rotate.Full,Direction.South, Direction.North)]
-        [InlineData(Rotate.Full,Direction.West, Direction.East)] 
-        public void TurnLeft_Should(Rotate rotate,Direction currenDirection,Direction exceptedDirection)
+        [InlineData(Rotate.Half, Direction.North, Direction.West)]
+        [InlineData(Rotate.Half, Direction.East, Direction.North)]
+        [InlineData(Rotate.Half, Direction.South, Direction.East)]
+        [InlineData(Rotate.Half, Direction.West, Direction.South)]
+        [InlineData(Rotate.Full, Direction.North, Direction.South)]
+        [InlineData(Rotate.Full, Direction.East, Direction.West)]
+        [InlineData(Rotate.Full, Direction.South, Direction.North)]
+        [InlineData(Rotate.Full, Direction.West, Direction.East)]
+        public void TurnLeft_Should(Rotate rotate, Direction currenDirection, Direction exceptedDirection)
         {
             int x = 4;
             int y = 5;
             Mock<IPlateau> plateauMock = new Mock<IPlateau>();
-            Point roverPoint = new Point(x, y);  
+            Point roverPoint = new Point(x, y);
             IRover rover = new Rover(plateauMock.Object, roverPoint, "rover_1", currenDirection);
             Point output = rover.TurnLeft(rotate);
 
@@ -61,21 +61,21 @@ namespace MarsRover.Infrastructure.UnitTests.Vehicle
             rover.ToString().Should().Be($"{output} {Constants.Directions.First(c => c.Value == exceptedDirection).Key}");
         }
         [Theory]
-        [InlineData(Rotate.Half,Direction.North, Direction.East)]
-        [InlineData(Rotate.Half,Direction.East, Direction.South)]
-        [InlineData(Rotate.Half,Direction.South, Direction.West)]
-        [InlineData(Rotate.Half,Direction.West, Direction.North)]
-        [InlineData(Rotate.Full,Direction.North, Direction.South)]
-        [InlineData(Rotate.Full,Direction.East, Direction.West)]
-        [InlineData(Rotate.Full,Direction.South, Direction.North)]
-        [InlineData(Rotate.Full,Direction.West, Direction.East)] 
-        public void TurnRight_Should(Rotate rotate,Direction currenDirection,Direction exceptedDirection)
+        [InlineData(Rotate.Half, Direction.North, Direction.East)]
+        [InlineData(Rotate.Half, Direction.East, Direction.South)]
+        [InlineData(Rotate.Half, Direction.South, Direction.West)]
+        [InlineData(Rotate.Half, Direction.West, Direction.North)]
+        [InlineData(Rotate.Full, Direction.North, Direction.South)]
+        [InlineData(Rotate.Full, Direction.East, Direction.West)]
+        [InlineData(Rotate.Full, Direction.South, Direction.North)]
+        [InlineData(Rotate.Full, Direction.West, Direction.East)]
+        public void TurnRight_Should(Rotate rotate, Direction currentDirection, Direction exceptedDirection)
         {
             int x = 4;
             int y = 5;
             Mock<IPlateau> plateauMock = new Mock<IPlateau>();
-            Point roverPoint = new Point(x, y);  
-            IRover rover = new Rover(plateauMock.Object, roverPoint, "rover_1", currenDirection);
+            Point roverPoint = new Point(x, y);
+            IRover rover = new Rover(plateauMock.Object, roverPoint, "rover_1", currentDirection);
             Point output = rover.TurnRight(rotate);
 
 
