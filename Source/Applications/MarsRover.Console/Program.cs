@@ -14,18 +14,8 @@ namespace MarsRover.Console
 {
     public class Program
     {
-        private static readonly IServiceCollection services = new ServiceCollection();
-        private static readonly IServiceProvider serviceProvider;
-
-        static Program()
-        {
-            BootStrapper.RegisterApplication(services);
-            serviceProvider = services.BuildServiceProvider();
-        }
         static void Main(string[] args)
         {
-
-
             IPlateau plateu = new Plateau("plateau", new Point(), new Point(5, 5));
             IMediator<IRover> mediator = new RoverMediator(plateu);
 
@@ -51,14 +41,7 @@ namespace MarsRover.Console
             System.Console.WriteLine("Expected Output:\n1 3 N\n5 1 E\n");
             System.Console.WriteLine(plateu.ToString());
 
-
-
+            System.Console.ReadLine();
         }
-
-        private static TService GetService<TService>()
-        {
-            return serviceProvider.GetService<TService>();
-        }
-
     }
 }

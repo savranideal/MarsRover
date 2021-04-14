@@ -2,8 +2,6 @@
 using MarsRover.Infrastructure.Vehicle;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarsRover.Infrastructure
 {
@@ -32,6 +30,7 @@ namespace MarsRover.Infrastructure
         }
 
 
-        public static IEnumerable<ICommand> CreateRoverCommandsFromText(string commandText, IRover rover) => commandText.Trim().ToCharArray().Select(c => CreateRoverCommand(rover, ConvertLetterToMoveType(c)));
+        public static IEnumerable<ICommand> CreateRoverCommandsFromText(string commandText, IRover rover) => commandText
+            .Trim().ToCharArray().Select(c => CreateRoverCommand(rover, ConvertLetterToMoveType(c)));
     }
 }

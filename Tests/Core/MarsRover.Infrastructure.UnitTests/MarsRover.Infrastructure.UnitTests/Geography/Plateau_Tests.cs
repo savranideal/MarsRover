@@ -43,7 +43,7 @@ namespace MarsRover.Infrastructure.UnitTests.Geography
             bool output=plateau.Contains(new Point(1, 2));
             bool output2=plateau.Contains(new Point(0, 0));
             bool output3=plateau.Contains(new Point(4, 2));
-
+            plateau.Name.Should().NotBeNullOrEmpty();
             output.Should().BeTrue();
             output2.Should().BeTrue();
             output3.Should().BeTrue();
@@ -56,7 +56,7 @@ namespace MarsRover.Infrastructure.UnitTests.Geography
             bool output=plateau.Contains(new Point(6, 0));
             bool output2=plateau.Contains(new Point(-1, 0));
             bool output3=plateau.Contains(new Point(9, 5));
-
+            plateau.Name.Should().NotBeNullOrEmpty();
             output.Should().BeFalse();
             output2.Should().BeFalse();
             output3.Should().BeFalse();
@@ -66,7 +66,8 @@ namespace MarsRover.Infrastructure.UnitTests.Geography
         public void CheckPointIsEmpty_EmptyPlato_ShouldTrue()
         {
             IPlateau plateau = new Plateau("plateau", new Point(0, 0), new Point(5, 5));
-
+            plateau.DeployRover(new Rover(plateau,new Point(4,3),"rover_1",Direction.East));
+            plateau.Name.Should().NotBeNullOrEmpty();
             plateau.CheckPointIsEmpty(new Point(0, 0)).Should().BeTrue();
             plateau.CheckPointIsEmpty(new Point(0, 1)).Should().BeTrue();
             plateau.CheckPointIsEmpty(new Point(5, 5)).Should().BeTrue();
@@ -77,9 +78,10 @@ namespace MarsRover.Infrastructure.UnitTests.Geography
         public void CheckPointIsEmpty_NotIncludedPoint_ShouldFalse()
         {
             IPlateau plateau = new Plateau("plateau", new Point(0, 0), new Point(5, 5));
-
+            plateau.DeployRover(new Rover(plateau, new Point(1, 1), "rover_1", Direction.East));
+            plateau.Name.Should().NotBeNullOrEmpty();
             plateau.CheckPointIsEmpty(new Point(9, 0)).Should().BeFalse();
-            plateau.CheckPointIsEmpty(new Point(8, 1)).Should().BeFalse();
+            plateau.CheckPointIsEmpty(new Point(1, 1)).Should().BeFalse();
             plateau.CheckPointIsEmpty(new Point(6, 5)).Should().BeFalse();
             plateau.CheckPointIsEmpty(new Point(2, 7)).Should().BeFalse();
         }

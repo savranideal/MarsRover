@@ -27,6 +27,6 @@ namespace MarsRover.Infrastructure.Geography
         {
             return !Equals(first, second);
         }
-         
+        public override string ToString() => $"{X} {Y}";
     }
 }

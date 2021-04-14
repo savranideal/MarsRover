@@ -86,7 +86,7 @@ namespace MarsRover.Infrastructure.Vehicle
 
         public override string ToString()
         {
-            return $"{Point.X} {Point.Y} {Constants.Directions.First(c => c.Value == Direction).Key}";
+            return $"{Point} {Constants.Directions.First(c => c.Value == Direction).Key}";
         }
     }
 }
